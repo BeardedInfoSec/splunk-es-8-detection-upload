@@ -204,8 +204,8 @@ python create_detections.py
 
 Example Output:  
 ```
-=== Processing server: {host_address} ===  
-[*] [192.168.128.33] Creating detection: Threat - api_detection_created_1 - Rule  
-[+] [192.168.128.33] Detection created and updated: Threat - api_detection_created_1 - Rule  
+=== Processing server: ${host_address} ===  
+[*] [${host_address}] Creating detection: Threat - api_detection_created_1 - Rule  
+[+] [${host_address}] Detection created and updated: Threat - api_detection_created_1 - Rule  
 [✅] Bulk YAML detection creation complete across all servers!
 ```
