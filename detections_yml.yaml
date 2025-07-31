@@ -1,0 +1,63 @@
+detections:
+  - name: "Threat - api_detection_created_1 - Rule"
+    title: "API Detection Created 1"
+    description: "First API-created detection to monitor failed login attempts."
+    search: "index=auth sourcetype=linux_secure action=failure | stats count by user"
+    cron: "*/10 * * * *"
+    earliest: "-15m"
+    latest: "now"
+    severity: "high"
+    domain: "access"
+    investigation_type: "intermediate_finding"
+    risk_message: "Repeated failed login attempts detected"
+    entities:
+      - risk_object_field: "user"
+        risk_object_type: "user"
+        risk_score: 5
+    risks:
+      - risk_object_field: "user"
+        risk_object_type: "user"
+        risk_score: 5
+    actions: "notable, risk"
+
+  - name: "Threat - api_detection_created_2 - Rule"
+    title: "API Detection Created 2"
+    description: "Second API-created detection to monitor high CPU usage on endpoints."
+    search: "index=os sourcetype=perfmon_cpu | stats avg(cpu) by host | where avg(cpu) > 90"
+    cron: "*/5 * * * *"
+    earliest: "-10m"
+    latest: "now"
+    severity: "medium"
+    domain: "endpoint"
+    investigation_type: "default"
+    risk_message: "Endpoint CPU usage over threshold"
+    entities:
+      - risk_object_field: "host"
+        risk_object_type: "system"
+        risk_score: 4
+    risks:
+      - risk_object_field: "host"
+        risk_object_type: "system"
+        risk_score: 4
+    actions: "notable, risk"
+
+  - name: "Threat - api_detection_created_3 - Rule"
+    title: "API Detection Created 3"
+    description: "Third API-created detection for anomalous outbound traffic volume."
+    search: "index=network sourcetype=netflow | stats sum(bytes) as total_bytes by dest_ip | where total_bytes > 100000000"
+    cron: "*/15 * * * *"
+    earliest: "-30m"
+    latest: "now"
+    severity: "critical"
+    domain: "network"
+    investigation_type: "intermediate_finding"
+    risk_message: "Potential data exfiltration detected"
+    entities:
+      - risk_object_field: "dest_ip"
+        risk_object_type: "system"
+        risk_score: 8
+    risks:
+      - risk_object_field: "dest_ip"
+        risk_object_type: "system"
+        risk_score: 8
+    actions: "notable, risk"
