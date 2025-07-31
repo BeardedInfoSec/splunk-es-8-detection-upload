@@ -73,21 +73,21 @@ It supports:
 ### Configuration:
 
 #### 1.  Credentials (creds.yml):  
-    This file stores the shared Splunk credentials for all servers.  
-    Example:  
-    ```
+This file stores the shared Splunk credentials for all servers.  
+Example:  
+```
     username: "admin"  
     password: "changeme"
-    
+``` 
 #### 2.  Servers (servers.csv):  
-    List all Splunk ES servers (one per line).  
-    Example:  
-    ```
+List all Splunk ES servers (one per line).  
+Example:  
+```
     host  
     192.168.128.33  
     192.168.128.34  
     192.168.128.35
-    
+```
     
 ####  3.  Detections (detections.yml):  
 
